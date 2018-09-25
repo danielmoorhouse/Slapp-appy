@@ -1,0 +1,86 @@
+﻿@model PagedList.IPagedList<SlappMain.Models.ViewModels.DeveloplistViewModel>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{
+    ViewBag.Title = "Index";
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        //find control with name searchString
+        //and apply autocomplete plugin
+        $("[name='searchString']").autocomplete({
+            //get data from search action
+            source: '@Url.Action("Search")',
+            //search when min 2 characters entered
+            minLength: 2,
+            //when option selected
+            select: function (event, ui) {
+                //go to the details action and append the id
+                //from the json results
+                window.location = '@Url.Action("Index")'
+                    + '/' + ui.item.id
+            }
+        });
+    })
+</script>
+
+
+<h2 style="margin-bottom: 3%">Application - Developer Index</h2>
+<hr/>
+
+<div class="row">
+    <div class="col-md-6">
+        <button class="btn btn-default revs">@Html.ActionLink("Create New App - Dev Record", "Create")</button>
+    </div>
+    <div class="col-md-6">
+ 
+        </div>
+        </div>
+        <hr />
+
+
+
+        @foreach (var item in Model)
+    {
+        <div class="col-md-3">
+
+
+
+            @if (item.app.AppTile != null)
+        {
+            <img src="@Url.Content(item.app.AppTile)" width="70" height="70" style="margin-left: 20%" />
+    }
+            @if (item.Company.CompLogo != null)
+        {
+            <img src="@Url.Content(item.Company.CompLogo)" style="background-color: white;" width="70" />
+    }
+
+
+            <p class="appdets" style="text-align: center!important;"> @Html.DisplayFor(modelItem => item.app.AppName)</p>
+
+
+
+            <p class="indhead" style="text-align: center!important;">   @Html.DisplayFor(modelItem => item.Company.CompName)</p>
+
+
+
+
+
+            <p class="appdets" style="text-align: center!important;">  @Html.DisplayFor(modelItem => item.Company.CompCont)</p>
+
+            <button class="btn btn-default revs" style="margin-left:15%;"> @Html.ActionLink("Edit", "Edit", new { id = item.DevelopCredit.DevId }) </button>
+            <button class="btn btn-default revs">
+                @Html.ActionLink("Details", "Details", new { id = item.DevelopCredit.DevId })
+            </button>
+            <button class="btn btn-default revs">
+                @Html.ActionLink("Delete", "Delete", new { id = item.DevelopCredit.DevId })
+            </button>
+
+        <hr/>
+        </div>
+}
+        <p class="indhead">Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount</p>
+
+        @Html.PagedListPager(Model, page => Url.Action("Index",
+            new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+

@@ -1,0 +1,49 @@
+﻿@model IEnumerable<SlappMain.Models.ViewModels.AppPegViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<h1>App - Pegi Rating Index</h1>
+<hr/>
+<button class="btn btn-default revs"> @Html.ActionLink("Create New App - Pegi Record", "Create")</button>
+<hr/>
+
+
+      
+
+
+        
+    
+
+@foreach (var item in Model) {
+<div class="col-md-3" style="text-align: center;">
+
+    @if (item.app.AppTile != null)
+    {
+        <img src="@Url.Content(item.app.AppTile)" width="50" />
+    }
+
+    @if (item.Pegi.PegImg != null)
+    {
+        <img src="@Url.Content(item.Pegi.PegImg)" width="50" />
+    }
+
+
+    <h4 class="indhead">@Html.DisplayFor(modelItem => item.app.AppName)</h4>
+
+
+
+
+
+
+
+    <button class="btn btn-default revs"> @Html.ActionLink("Edit", "Edit", new { id = item.AppPegi.AppPegiId })</button>
+    <button class="btn btn-default revs">  @Html.ActionLink("Details", "Details", new { id = item.AppPegi.AppPegiId })</button>
+    <button class="btn btn-default revs">  @Html.ActionLink("Delete", "Delete", new { id = item.AppPegi.AppPegiId }) </button>
+    <hr/>
+</div>
+}
+
+

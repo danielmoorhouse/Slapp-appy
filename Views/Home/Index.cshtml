@@ -1,0 +1,174 @@
+﻿@model IEnumerable<SlappMain.Models.App>
+
+@{
+    /**/
+
+    ViewBag.Title = "Index";
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        //for each of the rating dropdowns
+        $('.Rating').each(function () {
+            //get the value of the id from the hidden field
+            //next to it
+            var selectedId = $(this).next().val();
+            //now apply this as the selected id to the current
+            //dropdown box
+            $(this).val(selectedId);
+        });
+
+        //now apply the plug-in and set to read only
+        $('.Rating').barrating({
+            theme: 'fontawesome-stars',
+            readonly: true
+        });
+
+        var initvalue = $('.Average').next().val();
+
+        //now apply the plug-in and set to read only
+        $('.Average').barrating({
+            theme: 'fontawesome-stars-o',
+            readonly: true,
+            initialRating: initvalue
+        });
+    });
+
+</script>
+<style type="text/css">
+ 
+</style>
+
+    <div id="myCarousel" class="carousel slide" data-ride="carousel" style="width: 80%; 
+height: auto; text-align: center; margin-left: 15%; margin-top:2%;">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+            <li data-target="#myCarousel" data-slide-to="3"></li>
+            <li data-target="#myCarousel" data-slide-to="4"></li>
+            <li data-target="#myCarousel" data-slide-to="5"></li>
+            <li data-target="#myCarousel" data-slide-to="6"></li>
+
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+            <div class="item active">
+                <img src="~/Content/images/adsk1.jpg" style="width: 90%; height: 32em;">
+                <div class="carousel-caption">
+                    <h3 style="background-color: black; color: purple;">Autodesk Sketch Book</h3>
+                    <button class="btn btn-default revs" style="background-color: black !important;margin-top: 3em;
+                    ">
+                        @Html.ActionLink("More Details", "Details", "Apps", new { id = "9" }, null)
+                        <span class="glyphicon glyphicon-arrow-right" style="color:purple;"></span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="item">
+                <img src="~/Content/images/affph1.jpg" style="width: 90%; height: 32em;">
+                <div class="carousel-caption">
+                    <h3  style="background-color: black; color: purple;">Affinity Photo</h3>
+                    <button class="btn btn-default revs" style="background-color: black !important;
+                    margin-top: 3em;">
+                        @Html.ActionLink("More Details", "Details", "Apps", new { id = "1" }, null)
+                        <span class="glyphicon glyphicon-arrow-right" style="color:purple;"></span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="item">
+                <img src="~/Content/images/deezer1.jpg" style="width: 90%; height: 32em;">
+                <div class="carousel-caption">
+                    <h3  style="background-color: black; color: purple;">Deezer Music</h3>
+                    <button class="btn btn-default revs" style="background-color: black !important;
+                   margin-top: 3em;">
+                        @Html.ActionLink("More Details", "Details", "Apps", new { id = "20" }, null)
+                        <span class="glyphicon glyphicon-arrow-right" style="color:purple;"></span>
+                    </button>
+                </div>
+            </div>
+            <div class="item">
+                <img src="~/Content/images/movmakpro1.jpg" style="width: 90%; height: 32em;">
+                <div class="carousel-caption">
+                    <h3 style="background-color: black; color: purple;">Movie Maker Pro</h3>
+                    <button class="btn btn-default revs" style="background-color: black !important; margin-top: 3em;
+                    ">
+                        @Html.ActionLink("More Details", "Details", "Apps", new { id = "5" }, null)
+                        <span class="glyphicon glyphicon-arrow-right" style="color:purple;"></span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="item">
+                <img src="~/Content/images/napster1.jpg" style="width: 90%; height: 32em;">
+                <div class="carousel-caption">
+                    <h3 style="background-color: black; color: purple;">Napster</h3>
+                    <button class="btn btn-default revs" style="background-color: black !important; margin-top: 3em;
+                    ">
+                        @Html.ActionLink("More Details", "Details", "Apps", new { id = "19" }, null)
+                        <span class="glyphicon glyphicon-arrow-right" style="color:purple;"></span>
+                    </button>
+                </div>
+
+            </div>
+
+            <div class="item">
+                <img src="~/Content/images/whatsapp1.jpg" style="width: 90%; height: 32em;">
+                <div class="carousel-caption">
+                    <h3 style="background-color: black; color: purple;">WhatsApp Desktop</h3>
+                    <button class="btn btn-default revs" style="background-color: black !important;
+                        margin-top: 3em;">
+                        @Html.ActionLink("More Details", "Details", "Apps", new { id = "5" }, null)
+                        <span class="glyphicon glyphicon-arrow-right" style="color:purple;"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+      
+    
+</div>
+<hr/>
+<h2>Top Picks</h2>
+<hr/>
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-3" style="text-align: center;">
+            
+                @if (item.AppTile != null)
+                {
+                    <img src="@Url.Content(item.AppTile)" width="100" height="100" />
+                }
+            
+
+            
+                <h4 class="indhead" style="text-align:center;">@Html.DisplayFor(modelItem => item.AppName)</h4>
+
+            
+
+            
+                <h4 style="text-align:center;">£@Html.DisplayFor(modelItem => item.AppPrice)</h4>
+
+
+            
+            <button class="btn btn-default revs" style="background-color: black !important;
+                   ">
+                @Html.ActionLink("More Details", "Details", "Apps", new { id=item.AppId}, null)
+                <span class="glyphicon glyphicon-arrow-right" style="color:purple;"></span>
+            </button>
+            <hr />
+        </div>
+
+    }
+    </div>
+
+
+
+
+
+
+

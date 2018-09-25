@@ -1,0 +1,223 @@
+﻿@model SlappMain.Models.ViewModels.AppViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        //for each of the rating dropdowns
+        $('.Rating').each(function () {
+            //get the value of the id from the hidden field
+            //next to it
+            var selectedId = $(this).next().val();
+            //now apply this as the selected id to the current
+            //dropdown box
+            $(this).val(selectedId);
+        });
+
+        //now apply the plug-in and set to read only
+        $('.Rating').barrating({
+            theme: 'fontawesome-stars',
+            readonly: true
+        });
+
+        var initvalue = $('#Average').next().val();
+        
+        //now apply the plug-in and set to read only
+        $('#Average').barrating({
+            theme: 'fontawesome-stars-o',
+            readonly: true,
+            initialRating: initvalue
+        });
+    });
+   
+</script>
+<style type="text/css">
+   
+</style>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-2" style="text-align: center;">
+            @if (Model.App.AppTile != null)
+        {
+            <img id="tile" src="@Url.Content(Model.App.AppTile)" style="width: 100%; margin-top: 20%;" />
+    }
+
+
+        </div>
+
+        <div class="col-md-5">
+            <h1 id="name">@Html.DisplayFor(model => model.App.AppName) </h1>
+            @foreach (var item in Model.Pegi)
+    {
+        <img src="@Url.Content(item.PegImg)" width="65" style="float: right" />
+
+}
+            
+            <select id="Average">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                </select>
+                <input type="hidden" class="initialRating" value="@ViewBag.AverageReview" />
+
+                <h3>£@Html.DisplayFor(model => model.App.AppPrice)</h3>
+
+                <p class="indhead">Release Date: &nbsp;<span class="appdets"> @Html.DisplayFor(model => model.App.AppDate)</span> </p>
+                @foreach (var comp in Model.Companies)
+        {
+            <p class="indhead">Developer: &nbsp;<span class="appdets">@Html.DisplayFor(model => comp.CompName)</span></p>
+}
+                <p class="indhead">
+                    Available On:
+                    @foreach (var plat in Model.Platforms)
+            {
+                <span class="appdets">@Html.DisplayFor(model => plat.PlatName)  |</span>
+    }
+                </p>
+
+
+
+
+        </div>
+        <div class="col-md-5">
+            <h5 style="text-align: center;" class="screen">Screenshots</h5>
+            @if (Model.App.AppImg1 != null)
+        {
+            <img class="appimg" src="@Url.Content(Model.App.AppImg1)" style="width:75%; float: right; margin-right: 10%; margin-top: 2%;
+            margin-bottom: 2%" />
+    }
+        </div>
+ </div>
+   </div>   
+
+        <div class="row">
+            <div class="col-md-7">
+                <p class="appdets"> @Html.DisplayFor(model => model.App.AppDesc)</p>
+                <button class="btn btn-default revs">
+                    <span class="glyphicon glyphicon-circle-arrow-left" style="color: purple;"></span>
+                    @Html.ActionLink("Back to List", "Index")
+
+                </button>
+                <button class="btn btn-default revs" style="margin-left: 5em;">
+                    @Html.ActionLink("Add Review", "Create", "Reviews",
+new { id = Model.App.AppId }, null) <span class="glyphicon glyphicon-pencil" style="color: purple;"></span>
+                </button>
+
+                <div class="dropdown">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false" style="float: left; border: 1px solid purple;
+                              margin-top: 10px; margin-left: 5em;">
+                        <span class="glyphicon glyphicon-wrench" style="color: purple;"> Administrator</span>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+                        <li class="dropdown-item">
+                            @Html.ActionLink("Edit this App", "Edit", new { id = Model.App.AppId })
+                        </li>
+                        <li class="dropdown-item">
+                            @Html.ActionLink("Add Developer", "Create", "Develops",
+new { subName = "App", AppId = Model.App.AppId, }, null)
+                        </li>
+                        <li class="dropdown-item">
+                            @Html.ActionLink("Add Platform", "Create", "AppPlats",
+new { subName = "App", AppId = Model.App.AppId, }, null)
+                        </li>
+                        <li class="dropdown-item">
+                            @Html.ActionLink("Delete this App", "Delete", new { id = Model.App.AppId })
+                        </li>
+
+                    </div>
+                </div>
+                <div>
+                    <button class="btn btn-default rev" style="background-color: black;
+                    color: #14f702; border: 1px solid #14f702; float: right;" data-toggle="modal"
+                            data-target="#myModal"  aria-haspopup="true" aria-expanded="false">
+                        Reviews for @Html.DisplayFor(model => model.App.AppName)
+                    </button>
+                </div>
+
+            </div>
+                
+            
+
+
+
+            <div class="col-md-4">
+
+
+                @if (Model.App.AppImg2 != null)
+            {
+                <img class="appimg" src="@Url.Content(Model.App.AppImg2)"
+                     style="width:70%; float: right; margin-right: 12%; margin-top: 5%" />
+        }
+
+
+            </div>
+        </div>
+
+<hr />
+
+
+    <!-- Trigger the modal with a button -->
+   
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog"  >
+        <div class="modal-dialog" >
+
+            <!-- Modal content-->
+            <div class="modal-content" style="background-color: black !important;">
+
+
+                <div class="modal-header" style="background-color: black; border: 0 !important;">
+                    <button type="button" class="close" data-dismiss="modal" style="color: white"><h2 style="color: white">X</h2></button>
+                    <h2 id="name">@Html.DisplayFor(model => model.App.AppName) <span class="review" style="color:white";>Review's</span> </h2>
+                </div>
+
+
+                <div class="modal-body">
+
+                    @foreach (var review in Model.Reviews)
+    {
+
+                <dl class="dl-horizontal" style="float: left; background-color: black">
+
+                    <dt class="rev1">@Html.DisplayNameFor(model => review.RevUname):</dt>
+                    <dd class="rev2">@Html.DisplayFor(model => review.RevUname)</dd>
+
+                    <dt class="rev1">
+                        @Html.DisplayNameFor(model => review.ReviewRating)
+                    </dt>
+                    <dd>
+                        <select class="Rating">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                        <input type="hidden" class="initialRating" value="@review.ReviewRating" />
+                    </dd>
+
+                    <dt class="rev1"> @Html.DisplayNameFor(model => review.ReviewContent)</dt>
+                    <dd class="rev2">@Html.DisplayFor(model => review.ReviewContentTrimmed)</dd>
+
+                   
+
+                </dl>
+}
+
+                </div>
+
+                    <div class="modal-footer" style="border: 0 !important"></div>
+                
+
+            </div>
+   </div>
+</div>
+

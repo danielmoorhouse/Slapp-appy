@@ -1,0 +1,27 @@
+﻿@model IEnumerable<SlappMain.Models.App>
+
+
+<div class="row">
+    @foreach (var a in Model)
+    {
+
+        <div class="col-md-3">
+
+
+            @if (a.AppTile != null)
+            {
+                <img src="@Url.Content(a.AppTile)" width="100" height="100" style="margin-top: 20%;" />
+            }
+
+
+
+            <p class="homep"> @Html.DisplayFor(modelItem => a.AppName)</p>
+
+            <p class="homep"> £ @Html.DisplayFor(modelItem => a.AppPrice)</p>
+
+
+
+        </div>
+    }
+
+</div>

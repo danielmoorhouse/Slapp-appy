@@ -1,0 +1,35 @@
+﻿@model SlappMain.Models.Cat
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+<hr/>
+<h3>Are you sure you want to delete -   @Html.DisplayFor(model => model.CatName)?</h3>
+<div class="container-fluid" style="height: 20em; text-align: center;">
+   
+    
+
+        
+    <h2 style="margin-top: 5%;"> @Html.DisplayFor(model => model.CatName)</h2>
+       
+
+   
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default revs" /> 
+           
+        </div>
+    }
+</div>
+<hr/>
+<div>
+    <button class="btn btn-default revs">
+        @Html.ActionLink("Back to List", "Index")
+        </button>
+</div>
+<hr/>

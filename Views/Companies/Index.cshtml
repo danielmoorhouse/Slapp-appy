@@ -1,0 +1,101 @@
+﻿@model PagedList.IPagedList<SlappMain.Models.Companies>
+@using PagedList.Mvc
+<link href="~Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{
+    ViewBag.Title = "Company Index";
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        //find control with name searchString
+        //and apply autocomplete plugin
+        $("[name='searchString']").autocomplete({
+            //get data from search action
+            source: '@Url.Action("Search")',
+            //search when min 2 characters entered
+            minLength: 2,
+            //when option selected
+            select: function (event, ui) {
+                //go to the details action and append the id
+                //from the json results
+                window.location = '@Url.Action("Details")'
+                    + '/' + ui.item.id
+            }
+        });
+    })
+</script>
+
+<h2>Company Index</h2>
+<hr/>
+
+<div class="row">
+    <div class="col-md-6" >
+        <button class="btn btn-default revs" style="margin-bottom: 3%;">
+            @Html.ActionLink("Create New Company Record", "Create")
+        </button> <br/>
+        <button class="btn btn-default revs">
+            @Html.ActionLink("Toggle A-Z, Z-A", "Index",
+                             new
+                             {
+                                 sortOrder = ViewBag.NameSortParam,
+                                 currentFilter = ViewBag.CurrentFilter
+                             })
+        </button>
+
+    </div>
+    <div class="col-md-6">
+        @using (Html.BeginForm("Index", "Apps", FormMethod.Get))
+    {
+        <p class="appdets" style="float: right;">
+            Find by Company Name: @Html.TextBox("searchString",
+ViewBag.CurrentFilter as string)
+            <input type="submit" value="Search" style="float: right;"/>
+        </p>
+}
+    </div>
+</div>
+<hr />
+<div class="row">
+
+    @foreach (var item in Model)
+    {
+        <div class="col-md-3" style="text-align: center;">
+
+            @if (item.CompLogo != null)
+            {
+                <img src="@Url.Content(item.CompLogo)" width="120" height="100" 
+                margin-bottom: 5%;" />
+            }
+
+
+            <h4 class="appdets" style="text-align: center!important;"> @Html.DisplayFor(modelItem => item.CompName)</h4>
+
+
+         
+
+
+
+            <button class="btn btn-default revs" >
+                @Html.ActionLink("Edit", "Edit", new { id = item.CompId })
+            </button>
+            <button class="btn btn-default revs">
+                @Html.ActionLink("Details", "Details", new { id = item.CompId })
+            </button>
+            <button class="btn btn-default revs">
+                @Html.ActionLink("Delete", "Delete", new { id = item.CompId })
+            </button>
+            <hr/>
+        </div>
+    }
+</div>
+<p class="indhead">
+    Page @(Model.PageCount < Model.PageNumber ?
+      0 : Model.PageNumber) of @Model.PageCount
+</p>
+@Html.PagedListPager(Model, page => Url.Action("Index",
+            new
+            {
+                page,
+                sortOrder = ViewBag.CurrentSort,
+                currentFilter = ViewBag.CurrentFilter
+            }))
+

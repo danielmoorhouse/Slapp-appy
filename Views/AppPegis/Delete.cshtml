@@ -1,0 +1,50 @@
+﻿@model SlappMain.Models.AppPegi
+
+@{
+    ViewBag.Title = "Delete";
+}
+<h2>Delete App - Pegi Record</h2>
+<hr />
+<h3>Are you sure you want to delete this Application - Pegi Link?</h3>
+<hr />
+<div class="form-horizontal" style="margin-left: 20%; height: 20em; margin-top: 5%;">
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.AppPegiId)
+
+    <div class="form-group">
+        <h4 class="indhead">
+            <label class="control-label col-md-2" for="AppId">App Selection</label>
+        </h4>
+        <div class="col-md-10">
+            @Html.DropDownList("AppId")
+            @Html.ValidationMessageFor(model => model.AppId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <h4 class="indhead">
+            <label class="control-label col-md-2" for="PegiId">Pegi Selection</label>
+        </h4>
+        <div class="col-md-10">
+            @Html.DropDownList("PegiId")
+            @Html.ValidationMessageFor(model => model.PegiId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Delete" class="btn btn-default revs" />
+        </div>
+    </div>
+</div>
+}
+<hr />
+<div>
+    <button class="btn btn-default revs">
+        @Html.ActionLink("Back to List", "Index")
+    </button>
+</div>
+<hr />
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")}

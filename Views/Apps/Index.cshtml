@@ -1,0 +1,130 @@
+﻿@model PagedList.IPagedList<SlappMain.Models.App>
+@using PagedList.Mvc
+<link href="~Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Index";
+}
+<link href="~/Content/Site.css" rel="stylesheet" />
+<link href="~Content/PagedList.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+    $(document).ready(function () {
+        //find control with name searchString
+        //and apply autocomplete plugin
+        $("[name='searchString']").autocomplete({
+            //get data from search action
+            source: '@Url.Action("Search")',
+            //search when min 2 characters entered
+            minLength: 2,
+            //when option selected
+            select: function (event, ui) {
+                //go to the details action and append the id
+                //from the json results
+                window.location = '@Url.Action("Details")'
+                    + '/' + ui.item.id
+            }
+        });
+    })
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        //for each of the rating dropdowns
+        $('.Rating').each(function () {
+            //get the value of the id from the hidden field
+            //next to it
+            var selectedId = $(this).next().val();
+            //now apply this as the selected id to the current
+            //dropdown box
+            $(this).val(selectedId);
+        });
+
+        //now apply the plug-in and set to read only
+        $('.Rating').barrating({
+            theme: 'fontawesome-stars',
+            readonly: true
+        });
+
+        var initvalue = $('#Average').next().val();
+
+        //now apply the plug-in and set to read only
+        $('#Average').barrating({
+            theme: 'fontawesome-stars-o',
+            readonly: true,
+            initialRating: initvalue
+        });
+    });
+
+</script>
+<h2 class="indhead">Application Index</h2>
+<hr/>
+@using (Html.BeginForm("Index", "Apps", FormMethod.Get))
+{
+    <p style="float: right;">
+        Find by App Name: @Html.TextBox("searchString",
+  ViewBag.CurrentFilter as string)
+        <input type="submit" value="Filter" />
+    </p>
+}
+<button class="btn btn-default revs">
+    @Html.ActionLink("Toggle A-Z, Z-A", "Index",
+          new
+          {
+              sortOrder = ViewBag.NameSortParam,
+              currentFilter = ViewBag.CurrentFilter
+          })
+</button>
+
+<button class="btn btn-default revs">
+    @Html.ActionLink("Add New App  ", "Create")
+    <span class="glyphicon glyphicon-wrench" style="color: purple"></span>
+</button>
+   
+
+
+<hr />
+<div class="row">
+    @foreach (var item in Model)
+    {
+    <div class="col-md-3" style="text-align: center;">
+
+
+        
+            @if (item.AppTile != null)
+        {
+            <img src="@Url.Content(item.AppTile)" width="100" height="100"  />
+    }
+       
+            <h4 class="indhead" style="text-align:center;">@Html.DisplayFor(modelItem => item.AppName)</h4>
+
+        
+            <h4 style="text-align:center;">£@Html.DisplayFor(modelItem => item.AppPrice)</h4>
+
+
+        
+
+            <button class="btn btn-default revs" style="background-color: black !important;
+                    ">
+                @Html.ActionLink("More Details", "Details", new { id = item.AppId })
+                <span class="glyphicon glyphicon-arrow-right" style="color:purple;"></span>
+            </button>
+
+        
+        <hr />
+    </div>
+    }
+
+</div>
+<p class="indhead">
+    Page @(Model.PageCount < Model.PageNumber ?
+   0 : Model.PageNumber) of @Model.PageCount
+</p>
+@Html.PagedListPager(Model, page => Url.Action("Index",
+            new
+            {
+                page,
+                sortOrder = ViewBag.CurrentSort,
+                currentFilter = ViewBag.CurrentFilter
+            }))
+
+<hr />

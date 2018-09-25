@@ -1,0 +1,80 @@
+﻿@model SlappMain.Models.SlappMain.Models.Home
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Home</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AppName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AppName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AppDesc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AppDesc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AppDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AppDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AppImg1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AppImg1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AppImg2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AppImg2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AppPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AppPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AppTile)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AppTile)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

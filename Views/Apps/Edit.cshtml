@@ -1,0 +1,100 @@
+﻿@model SlappMain.Models.App
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2 class="indhead">Edit Application Record</h2>
+<hr />
+@using (Html.BeginForm("Edit", "Apps", null, FormMethod.Post,
+        new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal"  style="margin-left: 20%; height: 27em; margin-top: 5%;">
+
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.AppId)
+
+        <div class="form-group">
+            <h4 class="indhead">
+                @Html.LabelFor(model => model.AppName, htmlAttributes: new { @class = "control-label col-md-2" })
+            </h4>
+
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.AppName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.AppName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <h4 class="indhead">
+                @Html.LabelFor(model => model.AppDesc, htmlAttributes: new { @class = "control-label col-md-2" })
+            </h4>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.AppDesc, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.AppDesc, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <h4 class="indhead">
+                @Html.LabelFor(model => model.AppDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            </h4>
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.AppDate, "{0:yyyy-MM-dd}",
+                         htmlAttributes: new { @type = "date" })
+                @Html.ValidationMessageFor(model => model.AppDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <h4 class="indhead">
+                @Html.Label("AppImg1", new { @class = "control-label col-md-2" })
+            </h4>
+            <div class="col-md-10">
+                <input type="file" style="color: #ff0101;" name="upload" id="Image1" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <h4 class="indhead">
+                @Html.Label("AppImg2", new { @class = "control-label col-md-2" })
+            </h4>
+            <div class="col-md-10">
+                <input type="file" style="color: #ff0101;" name="upload2" id="Image2" />
+            </div>
+        </div>
+        <div class="form-group">
+            <h4 class="indhead">
+                @Html.LabelFor(model => model.AppPrice, htmlAttributes: new { @class = "control-label col-md-2" })
+            </h4>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.AppPrice, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.AppPrice, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <p class="indhead">
+                @Html.Label("AppTile", new { @class = "control-label col-md-2" })
+            </p>
+            <div class="col-md-10">
+                <input type="file" style="color: #ff0101;" name="upload3" id="AppTile" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default revs" />
+               
+            </div>
+        </div>
+    </div>
+}
+<hr/>
+<div>
+    <button class="btn btn-default revs">  @Html.ActionLink("Back to List", "Index")</button>
+</div>
+<hr/>

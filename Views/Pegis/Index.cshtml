@@ -1,0 +1,41 @@
+﻿@model IEnumerable<SlappMain.Models.Pegi>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Pegi Rating Index</h2>
+<hr/>
+
+
+    <button class="btn btn-default revs">   @Html.ActionLink("Create New", "Create")</button>
+<hr/>
+
+<div class="row">
+@foreach (var item in Model) {
+    <div class="col-md-4" style="text-align: center; height:auto; border: 0;">
+
+        @if (item.PegImg != null)
+    {
+        <img src="@Url.Content(item.PegImg)" width="100" />
+}
+
+
+
+
+
+
+        <button class="btn btn-default revs">
+            @Html.ActionLink("Edit", "Edit", new { id = item.PegiId })
+            </button>
+            <button class="btn btn-default revs">
+                @Html.ActionLink("Details", "Details", new { id = item.PegiId })
+                </button>
+                <button class="btn btn-default revs">@Html.ActionLink("Delete", "Delete", new { id = item.PegiId })
+                </button>
+        <hr/>
+</div>
+}
+    
+</div>
+<hr />

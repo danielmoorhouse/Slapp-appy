@@ -1,0 +1,39 @@
+﻿@model IEnumerable<SlappMain.Models.ViewModels.CategoryListViewModel>
+
+@{
+    ViewBag.Title = "View";
+}
+
+<h2>Social Apps</h2>
+<hr/>
+
+    <div class="row">
+        @foreach (var item in Model)
+        {
+
+        <div class="col-md-3" style="text-align: center;">
+
+
+            @if (item.App.AppTile != null)
+    {
+        <img src="@Url.Content(item.App.AppTile)" width="100" height="100" style="margin-top: 20%;" />
+}
+
+
+
+            <h4 class="indhead"> @Html.DisplayFor(modelItem => item.App.AppName)</h4>
+
+            <h4 class="appdets"> £ @Html.DisplayFor(modelItem => item.App.AppPrice)</h4>
+            <button class="btn btn-default revs" style="background-color: black !important;
+                   ">
+                @Html.ActionLink("More Details", "Details", "Apps", new { id = item.App.AppId }, null)
+                <span class="glyphicon glyphicon-arrow-right" style="color:purple;"></span>
+            </button>
+
+            <hr />
+        </div>
+        }
+    </div>
+
+
+

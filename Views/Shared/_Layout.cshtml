@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <!--Star rating plugin and themes-->
+    @Scripts.Render("~/Scripts/Stars/jquery.barrating.min.js")
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet" />
+    @Styles.Render("~/Scripts/Stars/themes/fontawesome-stars.css")
+    @Styles.Render("~/Scripts/Stars/themes/fontawesome-stars-o.css")
+    @Scripts.Render("~/Scripts/jquery-ui-1.12.1/jquery-ui.min.js")
+    @Styles.Render("~/Scripts/jquery-ui-1.12.1/jquery-ui.min.css")
+    @RenderSection("scripts", required: false)
+   
+   
+    
+  
+    <link href="~/Content/Site.css" rel="stylesheet" />
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <img src="~/Content/images/slappLogo.png" width="150" id="navlog" style="background-color: white; margin-left: 40%;" />
+
+            </div>
+            <div class="navbar-collapse collapse" id="myNavbar" style="float: none; margin-left: 200px;">
+
+                <ul class="nav navbar-nav" style="">
+
+                    <li class="active">@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li class="moblinks">@Html.ActionLink("App Index", "Index", "Apps")</li>
+                    <li class="moblinks">@Html.ActionLink("Free Apps", "Free", "Apps")</li>
+                    <li class="moblinks">@Html.ActionLink("Paid Apps", "Paid", "Apps")</li>
+                    <li class="moblinks">@Html.ActionLink("Social Apps", "Social", "AppCats")</li>
+                    <li class="moblinks">@Html.ActionLink("Music Apps", "Music", "AppCats")</li>
+                    <li class="moblinks">@Html.ActionLink("Organise", "Organise", "AppCats")</li>
+                    <li class="moblinks">@Html.ActionLink("Creative", "Creative", "AppCats")</li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Apps
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("App Index", "Index", "Apps")</li>
+                            <li>@Html.ActionLink("Free Apps", "Free", "Apps")</li>
+                            <li>@Html.ActionLink("Paid Apps", "Paid", "Apps")</li>
+
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Categories
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Social Media", "Social", "AppCats")</li>
+                            <li>@Html.ActionLink("Music", "Music", "AppCats")</li>
+                            <li>@Html.ActionLink("Organise", "Organise", "AppCats")</li>
+                            <li>@Html.ActionLink("Creative", "Creative", "AppCats")</li>
+                            <li>@Html.ActionLink("Category List", "Index", "Cats")</li>
+                            <li>@Html.ActionLink("App - Category List", "Index", "Appcats")</li>
+
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Developers
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+
+                            <li>@Html.ActionLink("Company List", "Index", "Companies")</li>
+                            <li>@Html.ActionLink("App - Developer List", "Index", "Develops")</li>
+
+                        </ul>
+                    </li>
+                    <li>@Html.ActionLink("Reviews", "Index", "Reviews")</li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="float: right;">
+                            Admin
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" style="color: #ff0101;">
+                            <li>@Html.ActionLink("Create App", "Create", "Apps")</li>
+                            <li>@Html.ActionLink("Create Developer", "Create", "Companies")</li>
+                            <li>@Html.ActionLink("Create App - Dev Record", "Create", "Develops")</li>
+                            <li>@Html.ActionLink("Create Category", "Create", "Cats")</li>
+                            <li>@Html.ActionLink("Create App - Cat Record", "Create", "AppCats")</li>
+                            <li>@Html.ActionLink("Create Platform", "Create", "Platforms")</li>
+                            <li>@Html.ActionLink("Create App - Platform Link", "Create", "AppPlats")</li>
+                            <li>@Html.ActionLink("Create Pegi Record", "Create", "Pegis")</li>
+                            <li>@Html.ActionLink("Create App - Pegi Record", "Create", "AppPegis")</li>
+                            <li>@Html.ActionLink("Create App - Cat Record", "Create", "AppCats")</li>
+                            <li>@Html.ActionLink("Pegi Index", "Index", "Pegis")</li>
+                            <li>@Html.ActionLink("App Pegi Index", "Index", "AppPegis")</li>
+
+                        </ul>
+                    </li>
+
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+   <hr/>
+    <div class="container body-content">
+        @RenderBody()
+      
+        <footer>
+           
+            <div>
+                <ul>
+                  
+                </ul>
+            </div>
+
+            <p class="copy">&copy; @DateTime.Now.Year - Daniel Moorhouse</p>
+            <p class="copy">Site created for educational purposes only</p>
+
+
+
+        </footer>
+    </div>
+
+</body>
+</html>

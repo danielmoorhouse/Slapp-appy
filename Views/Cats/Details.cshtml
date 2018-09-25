@@ -1,0 +1,31 @@
+﻿@model IEnumerable<SlappMain.Models.ViewModels.CategoryListViewModel>
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+
+<h4>Cat</h4>
+<hr />
+@foreach (var item in Model)
+{
+<div class="col-md-3">
+
+    @Html.DisplayFor(modelItem => item.App.AppName)
+
+
+    @Html.DisplayFor(modelItem => item.Cat.CatName)
+
+
+
+    @Html.DisplayFor(modelItem => item.App.AppPrice)
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = item.Cat.CatId }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</div>
+        }
+   
+

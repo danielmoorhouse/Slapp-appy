@@ -1,0 +1,27 @@
+﻿@model SlappMain.Models.Platform
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+<hr />
+
+<div class="container-fluid" style="text-align: center;">
+
+
+
+
+    <h1 class="indhead">  @Html.DisplayFor(model => model.PlatName)</h1>
+
+    <button class="btn btn-default revs">  @Html.ActionLink("Edit", "Edit", new { id = Model.PlatId })</button>
+
+</div>
+<hr />
+<div>
+    <button class="btn btn-default revs">
+        @Html.ActionLink("Back to List", "Index")
+        </button>
+</div>
+<hr/>
+

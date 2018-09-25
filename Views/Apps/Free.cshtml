@@ -1,0 +1,43 @@
+﻿@model IEnumerable<SlappMain.Models.App>
+
+@{
+    ViewBag.Title = "Free";
+}
+
+<h2>Free Apps</h2>
+
+<hr />
+
+
+@foreach (var item in Model)
+{
+    <div class="col-md-3" style="text-align: center;">
+        <dd>
+            @if (item.AppTile != null)
+            {
+                <img src="@Url.Content(item.AppTile)" width="100" height="100" />
+            }
+        </dd>
+
+        <dd>
+            <h4 style="text-align:center;">@Html.DisplayFor(modelItem => item.AppName)</h4>
+
+        </dd>
+
+        <dd>
+            <h4 style="text-align:center;">£@Html.DisplayFor(modelItem => item.AppPrice)</h4>
+
+
+        </dd>
+        <button class="btn btn-default revs" style="background-color: black !important;
+                   ">
+            @Html.ActionLink("More Details", "Details", new { id = item.AppId })
+            <span class="glyphicon glyphicon-arrow-right" style="color:purple;"></span>
+        </button>
+        <hr />
+    </div>
+
+}
+
+
+

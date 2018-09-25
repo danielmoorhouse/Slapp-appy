@@ -1,0 +1,72 @@
+﻿@model IEnumerable<SlappMain.Models.ViewModels.CategoryListViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        //find control with name searchString
+        //and apply autocomplete plugin
+        $("[name='searchString']").autocomplete({
+            //get data from search action
+            source: '@Url.Action("Search")',
+            //search when min 2 characters entered
+            minLength: 2,
+            //when option selected
+            select: function (event, ui) {
+                //go to the details action and append the id
+                //from the json results
+                window.location = '@Url.Action("Index")'
+                    + '/' + ui.item.id
+            }
+        });
+    })
+</script>
+
+<h2>Application - Category Index</h2>
+<hr/>
+<div class="row">
+    <div class="col-md-6">
+        <button class="btn btn-default revs" style="margin-bottom: 0%;">
+            @Html.ActionLink("Create New Application - Category Record", "Create")
+        </button>
+    </div>
+    <div class="col-md-6">
+        @using (Html.BeginForm())
+    {
+        <p class="appdets" style="margin-bottom: 0%; float: right;">
+            Find by name: @Html.TextBox("searchString")
+            <input type="submit" value="Filter" style="margin-bottom: 2%; float: right;" />
+        </p>
+}
+    </div>
+</div>
+<hr/>
+    @foreach (var item in Model)
+    {
+        <div class="col-md-3" style="text-align: center;">
+            @if (item.App.AppTile != null)
+            {
+                <img src="@Url.Content(item.App.AppTile)" width="100" height="100" />
+            }
+
+
+
+            <h4 class="indhead"> @Html.DisplayFor(modelItem => item.App.AppName)</h4>
+
+
+
+            <h5 class="appdets">@Html.DisplayFor(modelItem => item.Cat.CatName)</h5>
+
+
+            <h5 class="appdets"> @Html.DisplayFor(modelItem => item.Cat.CatDesc)</h5>
+
+
+            <button class="btn btn-default revs">  @Html.ActionLink("Edit", "Edit", new { id = item.AppCatLink.AppCatId })</button>
+            <button class="btn btn-default revs"> @Html.ActionLink("Details", "Details", new { id = item.AppCatLink.AppCatId })</button>
+            <button class="btn btn-default revs"> @Html.ActionLink("Delete", "Delete", new { id = item.AppCatLink.AppCatId })</button>
+            <hr />
+        </div>
+    }
+
+

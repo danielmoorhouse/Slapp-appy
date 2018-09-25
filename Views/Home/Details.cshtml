@@ -1,0 +1,74 @@
+﻿@model SlappMain.Models.SlappMain.Models.Home
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Home</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AppName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AppName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AppDesc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AppDesc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AppDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AppDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AppImg1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AppImg1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AppImg2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AppImg2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AppPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AppPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AppTile)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AppTile)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AppId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

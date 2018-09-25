@@ -1,0 +1,29 @@
+﻿@model SlappMain.Models.Pegi
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Pegi Details</h2>
+<hr/>
+<div>
+   
+    @if (Model.PegImg != null)
+    {
+        <img src="@Url.Content(Model.PegImg)" width="100" style="margin-left: 20%;" />
+    }
+
+    @Html.DisplayFor(model => model.PegRate)
+
+
+
+
+
+    <button class="btn btn-default revs">
+        @Html.ActionLink("Edit", "Edit", new { id = Model.PegiId })
+    </button>
+    <button class="btn btn-default revs">
+        @Html.ActionLink("Back to List", "Index")
+        </button>
+    </div>
+<hr/>

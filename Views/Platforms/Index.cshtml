@@ -1,0 +1,36 @@
+﻿@model IEnumerable<SlappMain.Models.Platform>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Platform Index</h2>
+<hr />
+<button class="btn btn-default revs">
+    @Html.ActionLink("Create New", "Create")
+</button>
+<hr />
+
+<div class="row">
+
+@foreach (var item in Model)
+{
+    <div class="col-md-3" style="text-align:center;">
+        <h2 class="indhead">@Html.DisplayFor(modelItem => item.PlatName)</h2>
+
+        <button class="btn btn-default revs">
+            @Html.ActionLink("Edit", "Edit", new { id = item.PlatId })
+        </button>
+        <button class="btn btn-default revs">
+            @Html.ActionLink("Details", "Details", new { id = item.PlatId })
+        </button>
+        <button class="btn btn-default revs">
+            @Html.ActionLink("Delete", "Delete", new { id = item.PlatId })
+        </button>
+      
+    </div>
+
+}
+    </div>
+<hr />
+

@@ -1,0 +1,41 @@
+﻿@model IEnumerable<SlappMain.Models.Cat>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<h2>Category Index</h2>
+
+<button class="btn btn-default revs">
+    @Html.ActionLink("Create New Category", "Create") <span class="glyphicon glyphicon-wrench"></span>
+</button>
+<hr />
+
+
+
+
+@foreach (var item in Model)
+{
+    <div class="col-md-3" style="text-align: center;">
+
+
+        <h2 class="inhead"> @Html.DisplayFor(modelItem => item.CatName)</h2>
+
+        <h3 class="appdets"> @Html.DisplayFor(modelItem => item.CatDesc)</h3>
+
+        <button class="btn btn-default revs">
+            @Html.ActionLink("Edit", "Edit", new { id = item.CatId })
+        </button>
+        <button class="btn btn-default revs">
+            @Html.ActionLink("Details", "Details", new { id = item.CatId })
+        </button>
+        <button class="btn btn-default revs">
+            @Html.ActionLink("Delete", "Delete", new { id = item.CatId })
+        </button>
+        <hr />
+    </div>
+    
+}
+
+

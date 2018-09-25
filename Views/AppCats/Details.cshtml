@@ -1,0 +1,39 @@
+﻿@model SlappMain.Models.AppCat
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>App - Cat Details</h2>
+<hr/>
+<div class="container-fluid" style="height: 20em; text-align: center;">
+
+
+
+    <h4 class="indhead" style="margin-top: 5%;">  @Html.DisplayNameFor(model => model.AppId)</h4>
+
+
+    <h4 class="appdets">
+        @Html.DisplayFor(model => model.AppId)
+    </h4>
+
+
+    <h4 class="indhead">
+        @Html.DisplayNameFor(model => model.CatsId)
+    </h4>
+
+    <h4 class="appdets">
+        @Html.DisplayFor(model => model.CatsId)
+
+    </h4>
+    <button class="btn btn-default revs">
+        @Html.ActionLink("Edit", "Edit", new { id = Model.AppCatId })</button>
+</div>
+  
+<hr/>
+<div>
+    <button class="btn btn-default revs">
+        @Html.ActionLink("Back to List", "Index")
+        </button>
+</div>
+<hr/>

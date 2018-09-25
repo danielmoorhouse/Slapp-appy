@@ -1,0 +1,45 @@
+﻿@model SlappMain.Models.Develop
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create App - Developer Record</h2>
+<hr />
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal" style="margin-left: 20%; height: 20em; margin-top: 5%;">
+        
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <h4 class="indhead"> <label class="control-label col-md-2" for="AppId">App Selection</label></h4>
+            <div class="col-md-10">
+                @Html.DropDownList("AppId")
+                @Html.ValidationMessageFor(model => model.AppId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <h4 class="indhead">
+                <label class="control-label col-md-2" for="AppId">Company Selection</label></h4>
+                <div class="col-md-10">
+                    @Html.DropDownList("CompanyId")
+                    @Html.ValidationMessageFor(model => model.CompanyId, "", new { @class = "text-danger" })
+                </div>
+</div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default revs" />
+            </div>
+        </div>
+    </div>
+}
+<hr/>
+<div>
+    <button class="btn btn-default revs"> @Html.ActionLink("Back to List", "Index") </button>
+</div>
+<hr/>

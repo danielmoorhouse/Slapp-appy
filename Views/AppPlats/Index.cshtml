@@ -1,0 +1,41 @@
+﻿@model IEnumerable<SlappMain.Models.ViewModels.AppPlatViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Application - Platform Index</h2>
+<hr/>
+<button class="btn btn-default revs">
+    @Html.ActionLink("Create New Record", "Create")
+</button>
+<hr/>
+
+        
+@foreach (var item in Model) {
+    
+<div class="col-md-3" style="text-align:center;">
+    @if (item.Apps.AppTile != null)
+    {
+        <img src="@Url.Content(item.Apps.AppTile)" width="100" height="100" />
+    }
+    <h2 class="appdets">  @Html.DisplayFor(modelItem => item.Apps.AppName)</h2>
+
+    <h2 class="indhead"> @Html.DisplayFor(modelItem => item.Platform.PlatName)</h2>
+
+
+    <button class="btn btn-default revs">
+        @Html.ActionLink("Edit", "Edit", new { id = item.AppPlats.AppPlatId })
+    </button>
+    <button class="btn btn-default revs">
+        @Html.ActionLink("Details", "Details", new { id = item.AppPlats.AppPlatId })
+    </button>
+    <button class="btn btn-default revs">
+        @Html.ActionLink("Delete", "Delete", new { id = item.AppPlats.AppPlatId })
+    </button>
+    <hr />
+</div>
+    
+}
+
+</table>

@@ -1,0 +1,47 @@
+﻿@model SlappMain.Models.Develop
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete App - Developer Record</h2>
+<hr />
+<h3>Are you sure you want to delete this Application - Developer Link?</h3>
+<hr />
+<div class="container-fluid" style="height: 20em; text-align: center;">
+
+    <h2>  @Html.DisplayNameFor(model => model.AppId)</h2>
+
+
+
+    <h3 style="color: white">   @Html.DisplayFor(model => model.AppId)</h3>
+
+
+
+    <h2>  @Html.DisplayNameFor(model => model.CompanyId)</h2>
+
+
+
+    <h3 style="color: white">
+        @Html.DisplayFor(model => model.CompanyId)
+    </h3>
+
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default revs" />
+
+        </div>
+    }
+</div>
+<hr />
+<div>
+    <button class="btn btn-default revs">
+        @Html.ActionLink("Back to List", "Index")
+    </button>
+</div>
+<hr />

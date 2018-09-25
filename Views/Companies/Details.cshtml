@@ -1,0 +1,29 @@
+﻿@model SlappMain.Models.Companies
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Company Details</h2>
+<hr />
+<div class="container" style="width: 40%;">
+
+
+
+    <img src="@Url.Content(Model.CompLogo)" width="200"
+         style="margin-top: 5%; margin-left: 25%;"/>
+
+
+
+    <h2 class="indhead" style="margin-bottom: 5%; text-align:center !important;"> @Html.DisplayFor(model => model.CompName)</h2>
+
+
+    <h4 style="margin-bottom: 10%; text-align:center !important;"> @Html.DisplayFor(model => model.CompCont)</h4>
+
+    <button class="btn btn-default revs"style="margin-left: 30%;"> @Html.ActionLink("Edit", "Edit", new { id = Model.CompId }) </button>
+    <button class="btn btn-default revs"> @Html.ActionLink("Back to List", "Index")</button>
+
+</div>
+<hr/>
+
+

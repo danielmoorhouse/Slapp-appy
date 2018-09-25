@@ -1,0 +1,79 @@
+﻿@model SlappMain.Models.ViewModels.AppReviewViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        //for each of the rating dropdowns
+        $('.Rating').each(function () {
+            //get the value of the id from the hidden field
+            //next to it
+            var selectedId = $(this).next().val();
+            //now apply this as the selected id to the current
+            //dropdown box
+            $(this).val(selectedId);
+        });
+
+        //now apply the plug-in and set to read only
+        $('.Rating').barrating({
+            theme: 'fontawesome-stars',
+            readonly: true
+        });
+    });
+</script>
+
+<h2>Details</h2>
+
+<div>
+    <h4>Review</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.App.AppName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.App.AppName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Review.RevUname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Review.RevUname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Review.ReviewContent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Review.ReviewContent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Review.ReviewRating)
+        </dt>
+
+        <dd>
+            <select class="Rating">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+            <input type="hidden" class="initialRating" value="@Model.Review.ReviewRating" />
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Go to App", "Details", "Apps", new { id = Model.Review.AppId }, null)
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Review.RevId })
+    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Delete", "Delete", new { id = Model.Review.RevId })
+</p>
